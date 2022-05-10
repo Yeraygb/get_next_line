@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/10 16:39:42 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:03:00 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	read = ft_read(fd, buf, bufread);
-	return (read);
 }
 
 int main()
