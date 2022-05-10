@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:44:29 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/09 16:07:10 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/10 13:32:43 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ size_t	ft_strlen(const char *str)
 /*
 ** Reserva y devuelve una nueva string,
 ** formada por la concatenación de ’s1’ y ’s2’.
+**
+** @param {char const s1} Primera string
+** @param {char const s2} Segunda string
+** 
+** @return {char *} La string concatenada resultante
 */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -55,6 +60,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
+/*
+** Funcion busca el primer caracter que coincide en 2 strings
+**
+** @param {const char *s} La string en la que se quiere buscar un parametro
+** @param {int c} El parametro que quieres buscar
+**
+** @return {char} La direc de la *s desde que ha encontrado la 1º coincidencia
+*/
 char	*ft_strchr(const char *s, int c)
 {
 	int	i;
