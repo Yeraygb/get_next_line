@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/12 15:04:31 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:27:20 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,6 @@ char	*ft_read(int fd, char *buf, char *savebuf)
 	return (savebuf);
 }
 
-
-char	*get_next_line(int fd)
-{
-	char		*buf;
-	char		*read;
-	static char	*savebuf;
-
-	if (fd <= 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	savebuf = ft_read(fd, buf, savebuf);
-	if (!savebuf)
-		return (NULL); 
-	read = ft_substr(savebuf, 0, read_line(savebuf));
-	return(read);
-}
-
 size_t	read_line(char *savebuf)
 {
 	char	*line;
@@ -57,6 +41,23 @@ size_t	read_line(char *savebuf)
 	}
 	return (0);
 }
+
+char	*get_next_line(int fd)
+{
+	char		*buf;
+	char		*read;
+	static char	*savebuf;
+
+	if (fd <= 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	savebuf = ft_read(fd, buf, savebuf);
+	if (!savebuf)
+		return (NULL); 
+	read = ft_substr(savebuf, 0, read_line(savebuf));
+	savebuf = ft_substr(savebuf, read_line(savebuf), ft_strlen(savebuf));
+	return(read);
+}
+
 
 /* 	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buf)

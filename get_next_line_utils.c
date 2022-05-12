@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:44:29 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/12 13:04:57 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:28:48 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,34 +123,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	str[j] = '\0';
 	return (str);
-}
-
-/*
-** La funcion guarda suficiente memoria para copiar una string
-** entonces la copia y te de vuelve la new string
-**
-** @param {const char *s} es la string que quieres copiar
-**
-** @return {char} La nueva string despues de copiar
-*/
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	int		count;
-	char	*s2;
-
-	count = 0;
-	while (s1[count])
-		count++;
-	s2 = malloc(sizeof(char) * (count + 1));
-	if (!s2)
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		s2[i] = s1[i];
-		i++;
-	}
-	s2[i] = '\0';
-	return (s2);
 }
