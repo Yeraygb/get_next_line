@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/12 15:27:20 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/12 16:00:59 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,8 @@ size_t	read_line(char *savebuf)
 	int		i;
 
 	i = 0;
-	while (savebuf[i])
-	{
-		if (ft_strchr(savebuf, '\n'))
-			return (i);
-		i++;
-	}
-	return (0);
+	line = ft_substr(savebuf, 0, ft_strlen(savebuf));
+	return (line);
 }
 
 char	*get_next_line(int fd)
@@ -54,7 +49,6 @@ char	*get_next_line(int fd)
 	if (!savebuf)
 		return (NULL); 
 	read = ft_substr(savebuf, 0, read_line(savebuf));
-	savebuf = ft_substr(savebuf, read_line(savebuf), ft_strlen(savebuf));
 	return(read);
 }
 
