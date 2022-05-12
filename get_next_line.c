@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/10 17:03:00 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:04:31 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_read(int fd, char *buf, char *savebuf)
 	return (savebuf);
 }
 
+
 char	*get_next_line(int fd)
 {
 	char		*buf;
@@ -35,12 +36,31 @@ char	*get_next_line(int fd)
 
 	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buf)
-		return (NULL);
 	savebuf = ft_read(fd, buf, savebuf);
-	
+	if (!savebuf)
+		return (NULL); 
+	read = ft_substr(savebuf, 0, read_line(savebuf));
+	return(read);
 }
+
+size_t	read_line(char *savebuf)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	while (savebuf[i])
+	{
+		if (ft_strchr(savebuf, '\n'))
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+/* 	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buf)
+		return (NULL); */
 
 int main()
 {
