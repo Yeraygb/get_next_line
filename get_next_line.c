@@ -33,8 +33,13 @@ size_t	read_line(char *savebuf)
 	int		i;
 
 	i = 0;
-	line = ft_substr(savebuf, 0, ft_strlen(savebuf));
-	return (line);
+	while (savebuf[i])
+	{
+		if (savebuf[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (i);
 }
 
 char	*get_next_line(int fd)
@@ -49,7 +54,8 @@ char	*get_next_line(int fd)
 	if (!savebuf)
 		return (NULL); 
 	read = ft_substr(savebuf, 0, read_line(savebuf));
-	return(read);
+	savebuf = ft_substr(savebuf, read_line(savebuf), '\0');
+	return (read);
 }
 
 
