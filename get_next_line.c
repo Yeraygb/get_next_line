@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/16 12:48:43 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/16 16:46:10 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*ft_read(int fd, char *savebuf)
 		nr_bytes = read(fd, buf, BUFFER_SIZE);
 		if (nr_bytes < 0)
 			return (NULL);
+		if (nr_bytes == 0)
+			break ;
 		buf[nr_bytes] = '\0';
 		savebuf = ft_strjoin(savebuf, buf);
 	}
@@ -51,13 +53,15 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*savebuf;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (!savebuf)
+		savebuf = ft_strdup("");
 	savebuf = ft_read(fd, savebuf);
 	if (!savebuf)
 		return (NULL);
 	line = ft_substr(savebuf, 0, read_line(savebuf));
-	savebuf = ft_substr(savebuf, read_line(savebuf), '\0');
+	savebuf = ft_substr(savebuf, read_line(savebuf), ft_strlen(savebuf));
 	free (savebuf);
 	return (line);
 }
@@ -66,7 +70,7 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL); */
 
-/* int main()
+int main()
 {
 	ssize_t	fd = open("test1.txt", O_RDONLY);
 	size_t	i = 4;
@@ -80,4 +84,4 @@ char	*get_next_line(int fd)
 	}
 	close(fd);
 	return (0);
-} */
+}
