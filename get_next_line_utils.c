@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:44:29 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/12 15:28:48 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:30:49 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ size_t	ft_strlen(const char *str)
 
 	count = 0;
 	while (str[count])
+	{
 		count++;
+	}
 	return (count);
 }
 
@@ -68,21 +70,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 **
 ** @return {char} La direc de la *s desde que ha encontrado la 1º coincidencia
 */
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
-	int	i;
-	int	n;
+	int		i;
 
 	i = 0;
-	n = ft_strlen(s);
-	while (s[i] != '\0')
+	if (!s)
+		return (NULL);
+	if (c == '\0')
+		return ((char *)&s[i]);
+	while (s[i])
 	{
-		if (s[i] == (unsigned char) c)
+		if (s[i] == (char) c)
 			return ((char *)&s[i]);
 		i++;
 	}
-	if (s[i] == (unsigned char) c)
-		return ((char *)&s[i]);
 	return (NULL);
 }
 
