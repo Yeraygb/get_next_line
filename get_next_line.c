@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/17 13:10:25 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:40:22 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*ft_substr_line(char *savebuf)
 	return (str);
 }
 
-char	*ft_substr_static(char *s)
+char	*ft_substr_static(char *s, int lenline)
 {
 	char	*str;
 	size_t	i;
@@ -81,8 +81,8 @@ char	*ft_substr_static(char *s)
 	i = read_line(s);
 	j = 0;
 	if (!s)
-		return (s);
-	str = (char *)malloc(sizeof(s) * (ft_strlen(s) - read_line(s)));
+		return (NULL);
+	str = (char *)malloc(sizeof(s) * (ft_strlen(s) - lenline + 1));
 	if (!str)
 		return (NULL);
 	i++;
@@ -93,6 +93,7 @@ char	*ft_substr_static(char *s)
 		i++;
 	}
 	str[j] = '\0';
+	free (s);
 	return (str);
 }
 
@@ -109,8 +110,7 @@ char	*get_next_line(int fd)
 	if (!savebuf)
 		return (NULL);
 	line = ft_substr_line(savebuf);
-	savebuf = ft_substr_static(savebuf);
-	free (savebuf);
+	savebuf = ft_substr_static(savebuf, ft_strlen(line));
 	return (line);
 }
 

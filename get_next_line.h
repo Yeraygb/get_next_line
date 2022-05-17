@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:52 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/17 12:15:16 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:36:46 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@
 char	*get_next_line(int fd);
 char	*ft_read(int fd, char *bufread);
 size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		read_line(char *savebuf);
-char	*ft_strdup(const char *s1);
+char	*ft_strdup(char *s1);
 char	*ft_substr_line(char *savebuf);
+char	*ft_substr_static(char *s, int lenline);
 
 #endif

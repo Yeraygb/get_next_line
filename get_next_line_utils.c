@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:44:29 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/17 12:58:00 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:36:59 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ size_t	ft_strlen(const char *str)
 ** 
 ** @return {char *} La string concatenada resultante
 */
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		len_s1;
@@ -59,6 +59,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		str[len_s1++] = s2[i++];
 	}
 	str[len_s1] = '\0';
+	free (s1);
 	return (str);
 }
 
@@ -96,7 +97,7 @@ char	*ft_strchr(char *s, int c)
 **
 ** @return {char} La nueva string despues de copiar
 */
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	int		i;
 	int		count;
