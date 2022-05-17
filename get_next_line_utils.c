@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:44:29 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/17 15:36:59 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:15:05 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	i = 0;
 	while (s2[i])
-	{
 		str[len_s1++] = s2[i++];
-	}
 	str[len_s1] = '\0';
 	free (s1);
 	return (str);

@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/17 15:40:22 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:51:16 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_read(int fd, char *savebuf)
 		if (nr_bytes < 0)
 		{
 			free (buf);
+			free (savebuf);
 			return (NULL);
 		}
 		if (nr_bytes == 0)
@@ -34,7 +35,7 @@ char	*ft_read(int fd, char *savebuf)
 		buf[nr_bytes] = '\0';
 		savebuf = ft_strjoin(savebuf, buf);
 	}
-	free(buf);
+	free (buf);
 	return (savebuf);
 }
 
@@ -46,7 +47,7 @@ int	read_line(char *savebuf)
 	while (savebuf[i])
 	{
 		if (savebuf[i] == '\n')
-			return (i);
+			return (++i);
 		i++;
 	}
 	return (i);
@@ -68,11 +69,13 @@ char	*ft_substr_line(char *savebuf)
 		str[i] = savebuf[i];
 		i++;
 	}
+	if (savebuf[i] == '\n')
+		str[i] = savebuf[i];
 	str[i] = '\0';
 	return (str);
 }
 
-char	*ft_substr_static(char *s, int lenline)
+char	*ft_substr_static(char *s)
 {
 	char	*str;
 	size_t	i;
@@ -82,11 +85,10 @@ char	*ft_substr_static(char *s, int lenline)
 	j = 0;
 	if (!s)
 		return (NULL);
-	str = (char *)malloc(sizeof(s) * (ft_strlen(s) - lenline + 1));
+	str = (char *)malloc(sizeof(s) * (ft_strlen(s) - i + 1));
 	if (!str)
 		return (NULL);
-	i++;
-	while (s[i] && s[i] != '\n')
+	while (s[i])
 	{
 		str[j] = s[i];
 		j++;
@@ -108,9 +110,12 @@ char	*get_next_line(int fd)
 		savebuf = ft_strdup("");
 	savebuf = ft_read(fd, savebuf);
 	if (!savebuf)
+	{
+		free (savebuf);
 		return (NULL);
+	}
 	line = ft_substr_line(savebuf);
-	savebuf = ft_substr_static(savebuf, ft_strlen(line));
+	savebuf = ft_substr_static(savebuf);
 	return (line);
 }
 
@@ -118,7 +123,7 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL); */
 
-int main()
+/* int main()
 {
 	ssize_t	fd = open("test1.txt", O_RDONLY);
 	size_t	i = 4;
@@ -132,4 +137,4 @@ int main()
 	}
 	close(fd);
 	return (0);
-}
+} */
