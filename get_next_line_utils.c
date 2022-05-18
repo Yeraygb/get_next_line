@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:44:29 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/17 16:15:05 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:54:09 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,28 @@ size_t	ft_strlen(const char *str)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
-	int		len_s1;
-	int		len_s2;
 	int		i;
+	int		n;
 
-	i = 0;
+	if (!s1)
+	{
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
 	if (!s1 || !s2)
 		return (NULL);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	str = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
-	if (!str)
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (s2[i])
-		str[len_s1++] = s2[i++];
-	str[len_s1] = '\0';
-	free (s1);
+	i = -1;
+	n = 0;
+	if (s1)
+		while (s1[++i] != '\0')
+			str[i] = s1[i];
+	while (s2[n] != '\0')
+		str[i++] = s2[n++];
+	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	free(s1);
 	return (str);
 }
 
@@ -95,7 +95,7 @@ char	*ft_strchr(char *s, int c)
 **
 ** @return {char} La nueva string despues de copiar
 */
-char	*ft_strdup(char *s1)
+/* char	*ft_strdup(char *s1)
 {
 	int		i;
 	int		count;
@@ -116,3 +116,4 @@ char	*ft_strdup(char *s1)
 	s2[i] = '\0';
 	return (s2);
 }
+ */
