@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/20 13:00:14 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/20 15:09:13 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@ char	*ft_read(int fd, char *savebuf)
 	ssize_t	nr_bytes;
 	char	*buf;
 
-	nr_bytes = 1;
-	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
+	nr_bytes = 1;
 	while (!ft_strchr(savebuf, '\n') && nr_bytes != 0)
 	{
 		nr_bytes = read(fd, buf, BUFFER_SIZE);
 		if (nr_bytes == -1)
 		{
 			free (buf);
-			free (savebuf);
 			return (NULL);
 		}
 		if (nr_bytes == 0)
@@ -59,20 +58,23 @@ char	*ft_substr_line(char *savebuf)
 	size_t	i;
 	size_t	n;
 
+	i = 0;
 	n = line_jump(savebuf);
-	if (!savebuf)
+	if (!savebuf[i])
 		return (NULL);
 	str = (char *)malloc(sizeof(char) * (n + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
 	while (savebuf[i] && savebuf[i] != '\n')
 	{
 		str[i] = savebuf[i];
 		i++;
 	}
 	if (savebuf[i] == '\n')
+	{
 		str[i] = savebuf[i];
+		i++;
+	}
 	str[i] = '\0';
 	return (str);
 }
@@ -90,7 +92,7 @@ char	*ft_substr_static(char *s)
 		free (s);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s) - n + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) - n) + 1);
 	if (!str)
 		return (NULL);
 	while (s[n])
@@ -127,7 +129,7 @@ int main()
 	while (i--)
 	{
 		line = get_next_line(fd);
-		printf("line %zu = %s\n", i, line);
+		printf("line %zu = %s", i, line);
 		free(line);
 	}
 	close(fd);
