@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/18 13:37:15 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/20 13:00:14 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,10 @@ char	*ft_substr_line(char *savebuf)
 	size_t	i;
 	size_t	n;
 
-	n = 0;
+	n = line_jump(savebuf);
 	if (!savebuf)
 		return (NULL);
-	while (savebuf[n] && savebuf[n] != '\n')
-		n++;
-	str = (char *)malloc(sizeof(char) * (line_jump(savebuf) + 1));
+	str = (char *)malloc(sizeof(char) * (n + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -82,21 +80,21 @@ char	*ft_substr_line(char *savebuf)
 char	*ft_substr_static(char *s)
 {
 	char	*str;
-	size_t	i;
 	size_t	j;
+	size_t	n;
 
-	i = line_jump(s);
+	n = line_jump(s);
 	j = 0;
 	if (!s)
 	{
 		free (s);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s) - i + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) - n + 1));
 	if (!str)
 		return (NULL);
-	while (s[i])
-		str[j++] = s[i++];
+	while (s[n])
+		str[j++] = s[n++];
 	str[j] = '\0';
 	free (s);
 	return (str);
@@ -123,7 +121,7 @@ char	*get_next_line(int fd)
 int main()
 {
 	ssize_t	fd = open("test1.txt", O_RDONLY);
-	size_t	i = 5;
+	size_t	i = 3;
 	char	*line;
 
 	while (i--)
