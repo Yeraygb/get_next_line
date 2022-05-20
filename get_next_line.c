@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/20 15:13:29 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/20 15:22:00 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int main()
+/* int main()
 {
 	ssize_t	fd = open("test1.txt", O_RDONLY);
 	size_t	i = 3;
@@ -134,4 +134,4 @@ int main()
 	}
 	close(fd);
 	return (0);
-}
+} */
