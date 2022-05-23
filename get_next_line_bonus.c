@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:32:54 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/23 16:30:13 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:39:38 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*ft_substr_st(char *s)
 		free (s);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s) - n + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) - n) + 1);
 	if (!str)
 		return (NULL);
 	while (s[n])
@@ -115,7 +115,6 @@ char	*get_next_line(int fd)
 	if (!savebuf[fd])
 	{
 		free (savebuf[fd]);
-		savebuf[fd] = NULL;
 		return (NULL);
 	}
 	line = ft_substr_line(savebuf[fd]);
