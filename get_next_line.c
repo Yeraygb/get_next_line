@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:36:30 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/20 15:51:09 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/23 11:20:02 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*ft_substr_line(char *savebuf)
 	n = line_jump(savebuf);
 	if (!savebuf[i])
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * (n + 1));
+	str = (char *)malloc(sizeof(char) * (n + 2));
 	if (!str)
 		return (NULL);
 	while (savebuf[i] && savebuf[i] != '\n')
@@ -87,7 +87,7 @@ char	*ft_substr_static(char *s)
 
 	n = line_jump(s);
 	j = 0;
-	if (!s)
+	if (!s[n])
 	{
 		free (s);
 		return (NULL);
@@ -120,7 +120,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int main()
+/* int main()
 {
 	ssize_t	fd = open("test1.txt", O_RDONLY);
 	size_t	i = 3;
@@ -135,3 +135,4 @@ int main()
 	close(fd);
 	return (0);
 }
+ */
