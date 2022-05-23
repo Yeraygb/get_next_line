@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:32:54 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/23 12:55:09 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:30:13 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*ft_read(int fd, char *savebuf)
 	while (!ft_strchr(savebuf, '\n') && nr_bytes != 0)
 	{
 		nr_bytes = read(fd, buf, BUFFER_SIZE);
+		if (buf < 0 || BUFFER_SIZE < 0)
+			return (NULL);
 		if (nr_bytes == -1)
 		{
 			free (buf);
@@ -79,7 +81,7 @@ char	*ft_substr_line(char *savebuf)
 	return (str);
 }
 
-char	*ft_substr_static(char *s)
+char	*ft_substr_st(char *s)
 {
 	char	*str;
 	size_t	j;
@@ -107,16 +109,17 @@ char	*get_next_line(int fd)
 	char			*line;
 	static char		*savebuf[4096];
 
-	if (savebuf[fd] < 0 || BUFFER_SIZE <= 0 || fd >= 4097)
+	if (savebuf[fd] < 0 || BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	savebuf[fd] = ft_read(fd, savebuf[fd]);
 	if (!savebuf[fd])
 	{
 		free (savebuf[fd]);
+		savebuf[fd] = NULL;
 		return (NULL);
 	}
 	line = ft_substr_line(savebuf[fd]);
-	savebuf[fd] = ft_substr_static(savebuf[fd]);
+	savebuf[fd] = ft_substr_st(savebuf[fd]);
 	return (line);
 }
 
@@ -135,4 +138,4 @@ char	*get_next_line(int fd)
 	close(fd);
 	return (0);
 }
- */
+*/

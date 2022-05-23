@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:34:22 by ygonzale          #+#    #+#             */
-/*   Updated: 2022/05/23 12:49:52 by ygonzale         ###   ########.fr       */
+/*   Updated: 2022/05/23 15:27:12 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		line_jump(char *savebuf);
 char	*ft_strdup(char *s1);
 char	*ft_substr_line(char *savebuf);
-char	*ft_substr_static(char *s);
+char	*ft_substr_st(char *s);
 
 #endif
