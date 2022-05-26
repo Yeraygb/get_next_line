@@ -12,6 +12,14 @@
 
 #include "get_next_line_bonus.h"
 
+/*
+* Funcion para leer el fichero con el BUFFER_SIZE hasta un salto de linea
+* 
+* @param {int fd} el fichero que tiene que leer
+* @param {char *} la estatica donde hay que almacenar lo que se lee
+*
+* @return {char *} la estatica donde se almacena lo leido
+*/
 size_t	ft_strlen(const char *str)
 {
 	size_t	count;

@@ -12,6 +12,13 @@
 
 #include "get_next_line.h"
 
+/*
+* Funcion contar el cuantos caracteres tiene una string
+*
+* @param {const char *} la string que recibe
+*
+* @return {size_t} el numero de caracteres de la string que recibe
+*/
 size_t	ft_strlen(const char *str)
 {
 	size_t	count;

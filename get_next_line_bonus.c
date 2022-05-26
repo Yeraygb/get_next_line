@@ -12,6 +12,14 @@
 
 #include "get_next_line_bonus.h"
 
+/*
+* Funcion para leer el fichero con el BUFFER_SIZE hasta un salto de linea
+* 
+* @param {int fd} el fichero que tiene que leer
+* @param {char *} la estatica donde hay que almacenar lo que se lee
+*
+* @return {char *} la estatica donde se almacena lo leido
+*/
 char	*ft_read(int fd, char *savebuf)
 {
 	ssize_t	nr_bytes;
@@ -54,6 +62,13 @@ int	line_jump(char *savebuf)
 	return (i);
 }
 
+/*
+* Funcion para guardar en un  string que despues devuelve que es lo se acaba printando
+*
+* @param {char *} la estatica donde tiene almcenado lo leido
+*
+* @return {char *} la string que devuelves y printas
+*/
 char	*ft_substr_line(char *savebuf)
 {
 	char	*str;
@@ -81,6 +96,13 @@ char	*ft_substr_line(char *savebuf)
 	return (str);
 }
 
+/*
+* Funcion para guardar el resto leido pero que no se ha escrito 
+*
+* @param {char *} la estatica donde almazena lo leido
+*
+* @return {char *} la string estatica que devuelves y guarda lo que ha leido
+*/
 char	*ft_substr_st(char *s)
 {
 	char	*str;
@@ -104,6 +126,14 @@ char	*ft_substr_st(char *s)
 	return (str);
 }
 
+/*
+* Funcion para tratar distintos fd y acabar pasando por pantalla 
+* todo el fd de salto de linea a salto de linea recibiendo distintos BUFFER_SIZE
+*
+* @param {int fd} la estatica donde tiene almcenado lo leido
+*
+* @return {char *} la string que devuelves y printas
+*/
 char	*get_next_line(int fd)
 {
 	char			*line;
